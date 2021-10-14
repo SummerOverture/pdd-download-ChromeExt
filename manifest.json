@@ -1,0 +1,39 @@
+{
+    "name": "xlsx tools",
+    "description" : "for pinduoduo",
+    "version": "1.0",
+    "manifest_version": 2,
+      "browser_action": {
+      "default_popup": "index.html"
+    },
+    "icons": {
+      "16": "luandchao.png",
+      "48": "luandchao.png",
+      "128": "luandchao.png"
+    },
+    "content_scripts": [
+            {
+        "matches": ["*://*.pinduoduo.com\/*"],
+        "js": ["./inject/mainstart.js"],
+        "run_at": "document_start"
+      },
+      {
+        "matches": ["*://*.pinduoduo.com\/*"],
+        "css": ["./inject/main.css"],
+        "run_at": "document_start",
+        "js": ["./inject/map.js", "./inject/xlsx.js","./inject/main.js"]
+      }
+    ],
+    "web_accessible_resources": [
+      "inject/hstart.js",
+      "inject/hooks.js"
+    ],
+    "background": {
+      "persistent": true,
+      "scripts": ["background.js"]
+    },
+    "permissions": [
+      "*://*.pinduoduo.com\/*",
+      "activeTab"
+    ]
+  }  
